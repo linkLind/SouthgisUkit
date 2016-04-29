@@ -35,14 +35,22 @@ Southgis common Foundation and UKit.It is Categories of Foundation and UKit,such
   #import "NSFileManager+SGS.h"
 
   /** UIKit 类的类别 */
+  
   #import "UIColor+SGS.h"
+  
   #import "UIFont+SGS.h"
+  
   #import "UIImage+SGS.h"
+  
   #import "UIView+SGS.h"
+  
   #import "UIImageView+SGS.h"
+  
 
 #Usage
+
   ## import "SGSCategories.h header file to your project,and you can use these Categories.
+  
     #import "SGSCategories.h"
   
 
