@@ -11,17 +11,27 @@ Southgis common Foundation and UKit.It is Categories of Foundation and UKit,such
   ARC
 
 #Code include
-  
+
   /** Foundation 类的类别 */
+  
   #import "NSObject+SGS.h"
+  
   #import "NSString+SGS.h"
+  
   #import "NSData+SGS.h"
+  
   #import "NSArray+SGS.h"
+  
   #import "NSDictionary+SGS.h"
+  
   #import "NSDate+SGS.h"
+  
   #import "NSNumber+SGS.h"
+  
   #import "NSTimer+SGS.h"
+  
   #import "NSNotificationCenter+SGS.h"
+  
   #import "NSFileManager+SGS.h"
 
   /** UIKit 类的类别 */
