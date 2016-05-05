@@ -46,6 +46,12 @@ Southgis common Foundation and UKit.It is Categories of Foundation and UKit,such
   
   #import "UIImageView+SGS.h"
   
+  #import "UIButton+SGS.h"
+  
+  #import "UISearchBar+SGS.h"
+  
+
+  
 
 #Usage
 
