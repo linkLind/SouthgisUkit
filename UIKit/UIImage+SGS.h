@@ -118,4 +118,31 @@
  */
 - (nullable UIImage *)blurWithRadius:(CGFloat)blurRadius tintColor:(nonnull UIColor *)tintColor saturationDeltaFactor:(CGFloat)saturationDeltaFactor maskImage:(nullable UIImage *)maskImage;
 
+
+
+
+/**
+ *  从原点开始截取图片，按照长，宽的实际情况截取
+ *  @param image 需要截取的图片
+ *  @return image 返回截取后的图片
+ */
+-(nullable UIImage *)getImageByHeightOrWidth:(nullable UIImage *)image;
+
+/**
+ *  截取部分图像
+ *  image = [image getSubImage:CGRectMake(0, 0, image.size.height, image.size.height)];
+ *
+ */
+-(nullable UIImage*)getSubImage:(CGRect)rect;
+
+
+/**
+ *  等比例压缩图片
+ *  @param 压缩的尺寸
+ *  @return 返回需要压缩的图片
+ */
+
+-(nullable UIImage*)scaleToSize:(CGSize)size;
+
+
 @end

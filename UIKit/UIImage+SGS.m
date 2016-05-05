@@ -361,4 +361,102 @@
     
     return outputImage;
 }
+
+
+
+/**
+ *  从原点开始截取图片，按照长，宽的实际情况截取
+ *  @param image 需要截取的图片
+ *  @return image 返回截取后的图片
+ */
+-(nullable UIImage *)getImageByHeightOrWidth:(nullable UIImage *)image{
+    
+    UIImage *subImage;
+    //判断图片的高度，与宽度
+    if (image.size.width>image.size.height) {
+        //如果高度小于宽度，则按照图片的高度去截取图片
+        subImage = [self getSubImage:CGRectMake(0, 0, image.size.height, image.size.height)];
+        
+    }
+    else{
+        //如果高度大于宽度，则按照图片的宽度去截取图片
+        subImage=[self getSubImage:CGRectMake(0, 0, image.size.width, image.size.width)];
+        
+    }
+    
+    return subImage;
+    
+}
+
+
+//截取部分图像
+-(nullable UIImage*)getSubImage:(CGRect)rect
+{
+    CGImageRef subImageRef = CGImageCreateWithImageInRect(self.CGImage, rect);
+    CGRect smallBounds = CGRectMake(0, 0, CGImageGetWidth(subImageRef), CGImageGetHeight(subImageRef));
+    
+    UIGraphicsBeginImageContext(smallBounds.size);
+    
+    //获取上下文
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextDrawImage(context, smallBounds, subImageRef);
+    UIImage* smallImage = [UIImage imageWithCGImage:subImageRef];
+    UIGraphicsEndImageContext();
+    
+    return smallImage;
+}
+
+//等比例缩放
+/**
+ *  等比例压缩图片
+ *  @param 压缩的尺寸
+ *  @return 返回需要压缩的图片
+ */
+
+-(nullable UIImage*)scaleToSize:(CGSize)size
+{
+    CGFloat width = CGImageGetWidth(self.CGImage);
+    CGFloat height = CGImageGetHeight(self.CGImage);
+    
+    float verticalRadio = size.height*1.0/height;
+    float horizontalRadio = size.width*1.0/width;
+    
+    float radio = 1;
+    if(verticalRadio>1 && horizontalRadio>1)
+    {
+        radio = verticalRadio > horizontalRadio ? horizontalRadio : verticalRadio;
+    }
+    else
+    {
+        radio = verticalRadio < horizontalRadio ? verticalRadio : horizontalRadio;
+    }
+    
+    //计算压缩后的图片长宽
+    width = width*radio;
+    height = height*radio;
+    
+    int xPos = (size.width - width)/2;
+    int yPos = (size.height-height)/2;
+    
+    // 创建一个bitmap的context
+    // 并把它设置成为当前正在使用的context
+    UIGraphicsBeginImageContext(size);
+    
+    // 绘制改变大小的图片
+    [self drawInRect:CGRectMake(xPos, yPos, width, height)];
+    
+    // 从当前context中创建一个改变大小后的图片
+    UIImage* scaledImage = UIGraphicsGetImageFromCurrentImageContext();
+    
+    // 使当前的context出堆栈
+    UIGraphicsEndImageContext();
+    
+    // 返回新的改变大小后的图片
+    return scaledImage;
+}
+
+
+
+
+
 @end
